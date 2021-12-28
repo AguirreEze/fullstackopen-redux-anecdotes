@@ -22,7 +22,7 @@ const initialState = anecdotesAtStart.map(asObject)
 export const reducer = (state = initialState, action) => {
   if (action.type === '@anecdote/create') {
     const newAnecdote = {
-      content: action.payload,
+      content: action.payload.content,
       id: getId(),
       votes: 0
     }
@@ -49,6 +49,15 @@ export const voteAnecdote = id => {
     type: '@anecdote/vote',
     payload: {
       id
+    }
+  }
+}
+
+export const addNewAnecdote = content => {
+  return {
+    type: '@anecdote/create',
+    payload: {
+      content
     }
   }
 }
