@@ -12,7 +12,8 @@ const AnecdoteForm = () => {
     dispatch(addNewAnecdote(anecdote))
   }
   return (
-        <form onSubmit={handleCreateAnecdote}>
+      <form onSubmit={handleCreateAnecdote}>
+        <h2>create new</h2>
         <div><input name={'anecdote'} /></div>
         <button>create</button>
       </form>
