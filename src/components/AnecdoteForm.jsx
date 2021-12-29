@@ -12,7 +12,7 @@ const AnecdoteForm = () => {
     e.target.anecdote.value = ''
 
     dispatch(addNewAnecdote(anecdote))
-    dispatch(setNotification(`Created ${anecdote}`))
+    dispatch(setNotification(`Created ${anecdote}`, 5))
   }
   return (
       <form onSubmit={handleCreateAnecdote}>
