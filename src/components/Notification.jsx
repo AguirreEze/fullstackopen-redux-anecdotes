@@ -9,7 +9,7 @@ const Notification = () => {
   useEffect(() => {
     setTimeout(() => { dispatch(hideNotification()) }, 5000)
   }
-  , [])
+  , [notification])
   const style = {
     border: 'solid',
     padding: 10,
