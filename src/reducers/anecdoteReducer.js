@@ -1,4 +1,4 @@
-import { getAllAnecdotes, postNewAnecdote } from '../services/anecdotes'
+import { getAllAnecdotes, postNewAnecdote, postVoteAnecdote } from '../services/anecdotes'
 
 export const anecdoteReducer = (state = [], action) => {
   if (action.type === '@anecdote/init') {
@@ -11,10 +11,7 @@ export const anecdoteReducer = (state = [], action) => {
     const { id } = action.payload
     return state.map(anec => {
       if (anec.id === id) {
-        return {
-          ...anec,
-          votes: anec.votes + 1
-        }
+        return action.payload
       }
       return anec
     })
@@ -23,12 +20,13 @@ export const anecdoteReducer = (state = [], action) => {
   return state
 }
 
-export const voteAnecdote = id => {
-  return {
-    type: '@anecdote/vote',
-    payload: {
-      id
-    }
+export const voteAnecdote = anecdote => {
+  return async dispatch => {
+    const res = await postVoteAnecdote(anecdote)
+    dispatch({
+      type: '@anecdote/vote',
+      payload: res
+    })
   }
 }
 
